@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,7 +15,7 @@ class UsersTableSeeder extends Seeder
     {
 
         User::query()->truncate();
-        
+
         User::create([
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin'),

@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('login', 'apiLoginController@login');
+Route::get('login', 'apiLoginController@login');
