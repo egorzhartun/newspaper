@@ -28,7 +28,9 @@ class UserController extends Controller
      */
     public function profile()
     {
-        return response()->json(['user' => Auth::user()], 200);
+        //return response()->json(['user' => Auth::user()], 200);
+        //return response(view('product',array('product'=>$product)),200, ['Content-Type' => 'application/json']);
+        return view('profile', ['user' => Auth::user()]);
     }
 
     /**
