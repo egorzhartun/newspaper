@@ -22,7 +22,10 @@ class apiLoginController extends Controller
 				return response()->json(['error' => 'could_not_create_token'], 500);
 			}
 
-			return response()->json(compact('token'));
+			//return response()->json(compact('token'));
+			//Session::put('usersess', Input::get('username'));
+			$token = session()->put('token', $token);
+			return redirect()->back()->with('success', 'Authorization success!');
 
 			/*
 		$credentials = request(['email', 'password']);
@@ -35,28 +38,21 @@ class apiLoginController extends Controller
 	}
 
     public function getAuthenticatedUser()
-        {
-                    try {
+		{
 
-                            if (! $user = \JWTAuth::parseToken()->authenticate()) {
-                                    return response()->json(['user_not_found'], 404);
-                            }
+			try {
+				if (! $user = \JWTAuth::parseToken()->authenticate()) {
+					return response()->json(['user_not_found'], 404);
+				}
+			} catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+				return response()->json(['token_expired'], $e->getStatusCode());
+			} catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+				return response()->json(['token_invalid'], $e->getStatusCode());
+			} catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+				return response()->json(['token_absent'], $e->getStatusCode());
+			}
 
-                    } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+			return response()->json(compact('user'));
 
-                            return response()->json(['token_expired'], $e->getStatusCode());
-
-                    } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-
-                            return response()->json(['token_invalid'], $e->getStatusCode());
-
-                    } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-
-                            return response()->json(['token_absent'], $e->getStatusCode());
-
-                    }
-
-                    return response()->json(compact('user'));
-
-    }
+		}
 }

@@ -7,19 +7,17 @@
 @endsection
 
 @section('content')
+	@if (\Session::has('success'))
+	    <div class="alert alert-success">
+			{!! \Session::get('success') !!}
+	    </div>
+	@endif
 	<div class="jumbotron">
 		<h1 class="display-4">Newspaper</h1>
 		<p class="lead">The New York Times, morning daily newspaper published in New York City, long the newspaper of record in the United States and one of the world's great newspapers. Its strength is in its editorial excellence; it has never been the largest newspaper in terms of circulation.</p>
 		<hr class="my-4">
 		<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
 		<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-@if (\Session::has('success'))
-    <div class="alert alert-success">
-        <ul>
-            <li>{!! \Session::get('success') !!}</li>
-        </ul>
-    </div>
-@endif
 
 	</div>
 

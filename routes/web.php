@@ -16,8 +16,8 @@ Route::get('/', function () {
 })->name('/');
 
 Route::post('login', 'apiLoginController@login')->name('login');
-//Route::get('getuser', 'apiLoginController@getAuthenticatedUser');
+
 Route::group(['middleware' => ['jwt.verify']], function() {
-	Route::get('user', 'apiLoginController@getAuthenticatedUser');
-	//Route::get('closed', 'DataController@closed');
+	Route::get('profile', 'apiLoginController@getAuthenticatedUser');
+	Route::get('closed', 'DataController@closed');
 });
