@@ -7,10 +7,14 @@
 @endsection
 
 @section('content')
+
 	@if (\Session::has('success'))
-	    <div class="alert alert-success">
-			{!! \Session::get('success') !!}
-	    </div>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			<strong>Congratulations!</strong> {!! \Session::get('success') !!}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+		</div>
 	@endif
 	<div class="jumbotron">
 		<h1 class="display-4">Newspaper</h1>

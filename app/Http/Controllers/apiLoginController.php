@@ -10,49 +10,52 @@ use  App\User;
 class apiLoginController extends Controller
 {
 	public function login(Request $request) {
-		
-		$credentials = $request->only('email', 'password');
 
-		try {
-			if (! $token = auth('api')->attempt($credentials)) {
-				return response()->json(['error' => 'invalid_credentials'], 400);
-			}
 
-			} catch (JWTException $e) {
-				return response()->json(['error' => 'could_not_create_token'], 500);
-			}
+		//validate incoming request 
+		$this->validate($request, [
+		'email' => 'required|string',
+		'password' => 'required|string',
+		]);
 
-			//return response()->json(compact('token'));
-			//Session::put('usersess', Input::get('username'));
-			$token = session()->put('token', $token);
-			return redirect()->back()->with('success', 'Authorization success!');
+		$credentials = $request->only(['email', 'password']);
 
-			/*
-		$credentials = request(['email', 'password']);
-
-		if (!$token = auth('api')->attempt($credentials)) {
-			return response()->json(['error' => 'Unauthorized'], 401);
+		if (! $token = Auth::attempt($credentials)) {
+		return response()->json(['message' => 'Unauthorized'], 401);
 		}
-		*/
+
+		$this->respondWithToken($token);
+
+		return redirect()->route('/')->with('success', 'You have successfully logged in. For further work with the service, go to your profile.');
 		
 	}
 
-    public function getAuthenticatedUser()
-		{
+	public function register(Request $request)
+	{
+        //validate incoming request 
+        $this->validate($request, [
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+        ]);
 
-			try {
-				if (! $user = \JWTAuth::parseToken()->authenticate()) {
-					return response()->json(['user_not_found'], 404);
-				}
-			} catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-				return response()->json(['token_expired'], $e->getStatusCode());
-			} catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-				return response()->json(['token_invalid'], $e->getStatusCode());
-			} catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-				return response()->json(['token_absent'], $e->getStatusCode());
-			}
+        try {
+           
+            $user = new User;
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $plainPassword = $request->input('password');
+            $user->password = app('hash')->make($plainPassword);
 
-			return response()->json(compact('user'));
+            $user->save();
 
-		}
+            //return successful response
+            return response()->json(['user' => $user, 'message' => 'CREATED'], 201);
+
+        } catch (\Exception $e) {
+            //return error message
+            return response()->json(['message' => 'User Registration Failed!'], 409);
+        }
+	}
+
 }
