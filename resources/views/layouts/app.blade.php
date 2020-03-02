@@ -46,7 +46,7 @@ h5 {
     overflow: hidden;
     padding: 0;
     border: none;
-    border-radius: .28571429rem;
+    border-radius: 0 !important;
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
 
@@ -55,8 +55,7 @@ h5 {
     position: relative;
     margin: 0;
     padding: 1em;
-    border: none;
-    border-top: 1px solid rgba(34, 36, 38, .1);
+    border: none !important;
     box-shadow: none;
 }
 
@@ -172,7 +171,6 @@ h5 {
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-                                    <a class="dropdown-item" href="#">Blog</a>
                                     <a class="dropdown-item" href="#">Settings</a>
                                     <div class="dropdown-divider"></div>
                                     <form method="post" action="{{ action('ProfileUser@logoutProfile') }}">
@@ -270,10 +268,10 @@ h5 {
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Repeat Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                <input type="password" name="password_confirmation" class="form-control" id="exampleInputPassword1">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Sign-in</button>
+                            <button type="submit" class="btn btn-primary">Sign-up</button>
 
                         </form>
                     </div>

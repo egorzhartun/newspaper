@@ -9,9 +9,17 @@
 @section('content')
 
 	<div class="container">
+		@if (\Session::has('success'))
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>You have successfully registered!</strong> {!! \Session::get('success') !!}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		@endif
 		<div class="row">
 			<div class="col-md-9">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
 					<a class="navbar-brand" href="#">Menu</a>
 
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,21 +35,6 @@
 							<li class="nav-item">
 								<a class="nav-link" href="#">Link</a>
 							</li>
-							
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Dropdown
-								</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="#">Action</a>
-									<a class="dropdown-item" href="#">Another action</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">Something else here</a>
-								</div>
-							</li>
-						<li class="nav-item">
-						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-						</li>
 						</ul>
 
 					</div>
@@ -60,17 +53,16 @@
 						<h4 class="card-title mt-3">{{$user->name}}</h4>
 
 						<div class="meta">
-						<a>Friends</a>
+						<a>Journalist</a>
 						</div>
 
 						<div class="card-text">
-						Tawshif is a web designer living in Bangladesh.
+						add a description to your profile
 						</div>
 					</div>
 
 					<div class="card-footer">
-						<small>Last updated 3 mins ago</small>
-						<button class="btn btn-secondary float-right btn-sm">show</button>
+						<button class="btn btn-secondary float-right btn-sm">edit</button>
 					</div>
 				</div>
 			</div>
