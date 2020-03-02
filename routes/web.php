@@ -13,6 +13,7 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('/');
 
-Route::get('login', 'apiLoginController@login');
+Route::post('login', 'apiLoginController@login')->name('login');
+Route::get('getuser', 'apiLoginController@getAuthenticatedUser');
