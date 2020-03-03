@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         //return response()->json(['user' => Auth::user()], 200);
         //return response(view('product',array('product'=>$product)),200, ['Content-Type' => 'application/json']);
-        return view('profile', ['user' => Auth::user()]);
+        return view('user.profile', ['user' => Auth::user()]);
     }
 
     /**
@@ -60,5 +60,9 @@ class UserController extends Controller
             return response()->json(['message' => 'user not found!'], 404);
         }
 
+    }
+
+    public function settings() {
+        return view('user.settings', ['user' => Auth::user()]);
     }
 }

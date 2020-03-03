@@ -32,7 +32,6 @@ class apiLoginController extends Controller
 
 	public function register(Request $request)
 	{
-        //validate incoming request 
         $this->validate($request, [
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
@@ -49,8 +48,6 @@ class apiLoginController extends Controller
 
             $user->save();
 
-            //return successful response
-            //return response()->json(['user' => $user, 'message' => 'CREATED'], 201);
             return redirect()->route('/')->with('success', 'You have successfully registered! Now you can share your news with users of this service. To get started, go to log in to your account.');
 
         } catch (\Exception $e) {
