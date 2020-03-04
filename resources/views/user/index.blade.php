@@ -8,7 +8,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -27,6 +27,7 @@
             </footer>
         @show
 
-        <script src="js/app.js" charset="utf-8"></script>
+        <script src="{{ URL::asset('js/app.js') }}" charset="utf-8"></script>
+        <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
     </body>
 </html>

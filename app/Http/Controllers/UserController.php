@@ -6,48 +6,40 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use  App\User;
+use App\Posts;
+use App\Votes;
+use DB;
 
 class UserController extends Controller
 {
-     /**
-     * Instantiate a new UserController instance.
-     *
-     * @return void
-     */
-    
+
     public function __construct()
     {
         $this->middleware('auth');
     }
     
-
-    /**
-     * Get the authenticated User.
-     *
-     * @return Response
-     */
     public function profile()
     {
-        //return response()->json(['user' => Auth::user()], 200);
-        //return response(view('product',array('product'=>$product)),200, ['Content-Type' => 'application/json']);
-        return view('user.profile', ['user' => Auth::user()]);
+        
+        $myArticles = DB::table('users_posts')
+                                ->orderBy('id', 'desc')
+                                ->where('user_id', Auth::id())
+                                ->get();
+
+        return view('user.profile', [
+            'user' => Auth::user(),
+            'articles' => $myArticles
+        ]);
+        
     }
 
-    /**
-     * Get all User.
-     *
-     * @return Response
-     */
+
     public function allUsers()
     {
          return response()->json(['users' =>  User::all()], 200);
     }
 
-    /**
-     * Get one user.
-     *
-     * @return Response
-     */
+
     public function singleUser($id)
     {
         try {

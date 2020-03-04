@@ -6,6 +6,11 @@
 
 require('./bootstrap');
 
+$('document').ready(function() {
+	CKEDITOR.replace('description');
+	CKEDITOR.replace('comment');
+});
+
 window.Vue = require('vue');
 
 /**

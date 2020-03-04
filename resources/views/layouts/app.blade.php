@@ -16,7 +16,7 @@
     <body>
         @section('sidebar')
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Newspaper</a>
+                <a class="navbar-brand" href="{{ route('/') }}">NP</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -39,9 +39,9 @@
                                     <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                                     <a class="dropdown-item" href="#">Settings</a>
                                     <div class="dropdown-divider"></div>
-                                    <form method="post" action="{{ action('ProfileUser@logoutProfile') }}">
+                                    <form style="margin: 0 !important;" method="post" action="{{ action('ProfileUser@logoutProfile') }}">
                                         {{ csrf_field() }}
-                                        <button class="btn btn-link" type="submit" name="logout">Exit</button>
+                                        <button class="btn btn-link dropdown-item" type="submit" name="logout">Exit</button>
                                     </form>
                                 </div>
                             </li>

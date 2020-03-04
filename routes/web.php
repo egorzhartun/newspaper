@@ -21,3 +21,9 @@ Route::get('profile', 'UserController@profile')->name('profile');
 Route::post('logout', 'ProfileUser@logoutProfile');
 Route::get('settings', 'UserController@settings')->name('settings');
 Route::get('users/{id}', 'UserController@singleUser');
+
+
+Route::get('article', 'PostsController@index')->name('article');
+Route::get('article/{id}', 'PostsController@show')->name('articleOnID');
+Route::get('articlessss/{id}', 'PostsController@likeThisPost')->name('articleOnIDs');
+Route::post('createarticle', 'PostsController@store')->name('createarticle');

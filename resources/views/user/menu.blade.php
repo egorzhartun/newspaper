@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-	<a class="navbar-brand" href="#">Menu</a>
+	<a class="navbar-brand" href="{{ route('/') }}">NP</a>
 
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
@@ -7,13 +7,35 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
+
 			<li class="nav-item">
-				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="#">
+					<i class="fas fa-envelope"></i>
+					Messages
+				</a>
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">Messages <span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="#">
+					<i class="fas fa-fire-alt"></i>
+					Hot news
+				</a>				
 			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('article') }}">
+					<i class="fas fa-pen"></i>
+					Create article
+				</a>				
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" href="{{ route('article') }}">
+					<i class="fas fa-bookmark"></i>
+					Bookmark
+				</a>				
+			</li>
+
 		</ul>
 
         <ul class="navbar-nav">
